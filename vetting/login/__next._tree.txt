@@ -1,3 +1,3 @@
 :HL["/dhl-vetting-pages/_next/static/chunks/3hy535tstpg0t.css","style"]
 :HL["/dhl-vetting-pages/_next/static/chunks/04o3qm8gjm89j.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"vetting","param":null,"prefetchHints":0,"slots":{"children":{"name":"login","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"RDPJ3v3lzWe8xZSEwzMZa"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"vetting","param":null,"prefetchHints":0,"slots":{"children":{"name":"login","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"CRmvnbUBV4zREicGimQbC"}
