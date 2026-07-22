@@ -18,7 +18,6 @@ export default function LoginPage() {
       return;
     }
 
-    // Firebase login logic would go here
     console.log('Login attempt:', { email, password });
   };
 
