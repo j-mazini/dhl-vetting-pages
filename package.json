@@ -8,25 +8,26 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp .nojekyll out/.nojekyll",
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "^16.2.2",
+    "@hookform/resolvers": "^3.3.4",
+    "firebase": "^10.11.0",
     "framer-motion": "^12.40.0",
     "lucide-react": "latest",
-    "firebase": "^10.11.0",
+    "next": "^16.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-hook-form": "^7.51.0",
-    "zod": "^3.22.4",
-    "@hookform/resolvers": "^3.3.4"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
+    "@types/node": "^20.10.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/node": "^20.10.0"
+    "gh-pages": "^6.3.0",
+    "typescript": "^5.3.3"
   },
   "keywords": [
     "dhl",
