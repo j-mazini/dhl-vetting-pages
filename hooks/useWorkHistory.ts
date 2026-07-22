@@ -9,6 +9,9 @@ export interface WorkHistoryEntry {
   startDate: string;
   endDate: string;
   currentlyWorking: boolean;
+  companyContact?: string;
+  jobTitle?: string;
+  reasonForLeaving?: string;
 }
 
 export function useWorkHistory() {

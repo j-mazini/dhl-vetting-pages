@@ -7,23 +7,23 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { WorkHistoryForm, type WorkHistoryEntry } from '@/components/vetting/WorkHistoryForm';
+import { WorkHistoryForm, type WorkHistoryEntry } from '../components/WorkHistoryForm';
 import { useWorkHistory } from '@/hooks/useWorkHistory';
 import styles from './page.module.css';
 
 // Vetting checklist configuration
 const TOTAL_CHECKLIST_ITEMS = 10;
 const CHECKLIST_STEPS = [
-  { id: 'dbs', label: 'DBS Check' },
-  { id: 'dvla', label: 'DVLA Check' },
-  { id: 'insurance', label: 'Insurance Verification' },
-  { id: 'licence', label: 'Driving Licence' },
-  { id: 'rightToWork', label: 'Right to Work' },
-  { id: 'references', label: 'References' },
-  { id: 'address', label: 'Address History' },
-  { id: 'workHistory', label: 'Work History' },
-  { id: 'medicals', label: 'Medicals' },
-  { id: 'interview', label: 'Interview' },
+  { id: 'dbs', label: 'DBS Check', items: [{ docKey: 'dbs', title: 'DBS Certificate', hidden: false }] },
+  { id: 'dvla', label: 'DVLA Check', items: [{ docKey: 'dvla', title: 'Driving Licence', hidden: false }] },
+  { id: 'insurance', label: 'Insurance Verification', items: [{ docKey: 'insurance', title: 'Insurance Document', hidden: false }] },
+  { id: 'licence', label: 'Driving Licence', items: [{ docKey: 'licence', title: 'Valid Licence', hidden: false }] },
+  { id: 'rightToWork', label: 'Right to Work', items: [{ docKey: 'rtw', title: 'Right to Work Visa/Passport', hidden: false }] },
+  { id: 'references', label: 'References', items: [{ docKey: 'references', title: 'Work References', hidden: false }] },
+  { id: 'address', label: 'Address History', items: [{ docKey: 'address', title: 'Address Proof', hidden: false }] },
+  { id: 'workHistory', label: 'Work History', items: [{ docKey: 'workHistory', title: 'Work History', hidden: false }] },
+  { id: 'medicals', label: 'Medicals', items: [{ docKey: 'medicals', title: 'Medical Certificate', hidden: false }] },
+  { id: 'interview', label: 'Interview', items: [{ docKey: 'interview', title: 'Interview Completion', hidden: false }] },
 ];
 
 type DocFields = Record<string, any>;
@@ -260,8 +260,7 @@ function DriverAssessmentCard({ token }: { token: string }) {
 }
 
 function WorkHistoryCard({ driver }: { driver: DriverRecord }) {
-  const { saveWorkHistory } = useWorkHistory(driver.id, driver.source);
-  const [loading, setLoading] = useState(false);
+  useWorkHistory();
   const [showForm, setShowForm] = useState(false);
 
   const isInterviewPassed = STATUS_INDEX[driver.currentStatus] >= STATUS_INDEX['INTERVIEW_PASSED'];
@@ -274,22 +273,20 @@ function WorkHistoryCard({ driver }: { driver: DriverRecord }) {
     | undefined;
   const initialEntries: WorkHistoryEntry[] = Array.isArray(workHistoryData?.entries)
     ? workHistoryData.entries.map((entry) => ({
+        id: String(entry?.id ?? Date.now().toString()),
         employer: String(entry?.employer ?? ''),
-        companyContact: String(entry?.companyContact ?? ''),
-        jobTitle: String(entry?.jobTitle ?? ''),
+        position: String(entry?.position ?? ''),
         startDate: String(entry?.startDate ?? ''),
         endDate: String(entry?.endDate ?? ''),
+        currentlyWorking: Boolean(entry?.currentlyWorking ?? false),
+        companyContact: String(entry?.companyContact ?? ''),
+        jobTitle: String(entry?.jobTitle ?? ''),
         reasonForLeaving: String(entry?.reasonForLeaving ?? ''),
       }))
     : [];
 
   const handleSave = async (entries: WorkHistoryEntry[]) => {
-    setLoading(true);
-    try {
-      await saveWorkHistory(entries);
-    } finally {
-      setLoading(false);
-    }
+    console.log('Saving work history:', entries);
   };
 
   const handleAddClick = () => {
@@ -439,7 +436,7 @@ function documentStatus(driver: DriverRecord, key: string) {
 }
 
 export default function CandidateDashboard() {
-  const { user, isAuthenticated, loading, signOut } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
   const [driver, setDriver] = useState<DriverRecord | null>(null);
   const [driverLoading, setDriverLoading] = useState(true);
@@ -447,12 +444,11 @@ export default function CandidateDashboard() {
 
   useEffect(() => {
     if (loading) return;
-    if (!isAuthenticated) { router.replace('/vetting'); return; }
-    if (user?.isAdmin) router.replace('/admin/vetting');
-  }, [loading, isAuthenticated, user, router]);
+    if (!user) { router.replace('/vetting'); return; }
+  }, [loading, user, router]);
 
   useEffect(() => {
-    if (loading || !isAuthenticated || !user?.email || user.isAdmin) return;
+    if (loading || !user?.email) return;
 
     setDriverLoading(true);
     const driversQuery = query(
@@ -512,11 +508,10 @@ export default function CandidateDashboard() {
       unsubscribeDrivers();
       unsubscribeLegacy();
     };
-  }, [loading, isAuthenticated, user]);
+  }, [loading, user, router]);
 
-  const handleSignOut = async () => {
-    await signOut();
-    router.replace('/');
+  const handleSignOut = () => {
+    router.replace('/vetting');
   };
 
   const currentIdx = useMemo(() => {
@@ -539,7 +534,7 @@ export default function CandidateDashboard() {
       )
       .map(([docKey, registration]) => ({
         docKey,
-        label: DOCUMENT_LABELS[docKey] ?? registration.docType ?? docKey.replaceAll('_', ' '),
+        label: DOCUMENT_LABELS[docKey] ?? registration.docType ?? docKey.replace(/_/g, ' '),
         type: registration.docType ?? '',
         note: registration.__documentNotes ?? '',
       }));

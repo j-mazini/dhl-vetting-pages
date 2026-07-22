@@ -5,6 +5,7 @@ export type ContactFormCopy = {
   emailPlaceholder: string;
   messageLabel: string;
   messagePlaceholder: string;
+  submit: string;
 };
 
 export const contactForm: ContactFormCopy = {
@@ -14,6 +15,7 @@ export const contactForm: ContactFormCopy = {
   emailPlaceholder: 'your@email.com',
   messageLabel: 'Message',
   messagePlaceholder: 'How can we help?',
+  submit: 'Send Message',
 };
 
 export const contactInfo = {
