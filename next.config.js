@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
+  basePath: '/dhl-vetting-pages',
   images: {
     unoptimized: true,
     remotePatterns: [
