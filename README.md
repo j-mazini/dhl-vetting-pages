@@ -1,14 +1,16 @@
-# DHL Vetting Tracker - Pages Structure
+# DHL Vetting Tracker - Pages
 
-This folder contains the two main sections of the application:
+🏠 Landing Page + 🔐 Vetting Flow
 
-## 📁 Structure
+Complete, reusable pages for DHL Vetting Tracker built with Next.js 14+.
+
+## 📁 What's Inside
 
 ```
 pages/
 ├── landing/              # Landing page (public)
 │   ├── page.tsx         # Main landing page
-│   └── components/      # Landing components
+│   └── components/      # Landing UI components
 │       ├── LandingHeader.tsx
 │       ├── EnhancedHeroSection.tsx
 │       ├── ServiceTabs.tsx
@@ -16,83 +18,137 @@ pages/
 │       └── ContactForm.tsx
 │
 └── vetting/             # Vetting flow (driver portal)
-    ├── page.tsx         # Redirect to login
-    ├── layout.tsx       # Vetting layout wrapper
-    ├── login/
-    │   └── page.tsx     # Driver login
-    ├── register/
-    │   └── page.tsx     # Pre-registration
-    ├── dashboard/
-    │   └── page.tsx     # Driver portal
-    └── components/      # Vetting components
-        ├── PreRegistrationForm.tsx
-        └── WorkHistoryForm.tsx
+    ├── page.tsx         # Router to /login
+    ├── layout.tsx       # Vetting layout
+    ├── login/page.tsx   # Driver login
+    ├── register/        # Pre-registration
+    ├── dashboard/       # Driver portal
+    └── components/      # Vetting UI components
 ```
 
-## 🏠 Landing Page (`/landing`)
+## 🚀 Quick Start
 
-**Route:** `/`
+### Copy to your project:
 
-Main entry point for the application. Showcases:
-- DHL Vetting Tracker branding
-- Service information
-- Fleet details
-- Contact information
+```bash
+# Clone this repository
+git clone https://github.com/j-mazini/dhl-vetting-pages.git
 
-### Components Used
-- `LandingHeader` - Navigation with logo and links
-- `EnhancedHeroSection` - Hero section with animation
-- `ServiceTabs` - Service showcase
-- `FleetSpotlight` - Fleet information
-- `ContactForm` - Contact form
+# Copy pages folder to your Next.js app
+cp -r dhl-vetting-pages/pages ./your-project/
+```
 
-## 🔐 Vetting Flow (`/vetting`)
-
-**Route:** `/vetting/*`
-
-Driver portal for vetting process:
-- `/vetting/login` - Login page
-- `/vetting/register` - Pre-registration
-- `/vetting/dashboard` - Driver portal with progress tracking
-
-### Authentication
-Uses Firebase Authentication with email/password login.
-
-### Features
-- Document submission
-- Progress tracking
-- Work history management
-- Real-time status updates
-
-## 📝 Usage
-
-Reference these pages in your main `src/app/` routing:
+### Import in your app:
 
 ```typescript
-// src/app/page.tsx
+// src/app/page.tsx - Landing page
 import LandingPage from '@/pages/landing/page';
 
-export default function Home() {
-  return <LandingPage />;
-}
+export default LandingPage;
 ```
 
 ```typescript
-// src/app/vetting/layout.tsx
-import VettingLayout from '@/pages/vetting/layout';
+// src/app/vetting/page.tsx - Vetting flow
+import VettingPage from '@/pages/vetting/page';
 
-export default function Layout({ children }) {
-  return <VettingLayout>{children}</VettingLayout>;
+export default VettingPage;
+```
+
+## 🎨 Features
+
+### Landing Page
+- 📱 Responsive hero section
+- 🎬 Framer Motion animations
+- 📊 Service showcase tabs
+- 🚗 Fleet information
+- 📧 Contact form
+- 🎯 DHL branding
+
+### Vetting Flow
+- 🔐 Firebase authentication
+- 📝 Pre-registration form
+- 📊 Progress tracking
+- 📄 Document management
+- 💼 Work history tracking
+- ✅ Real-time status updates
+
+## 🔧 Tech Stack
+
+- **Next.js** 16.2+
+- **React** 19+
+- **TypeScript** 5+
+- **Firebase** Authentication & Firestore
+- **Framer Motion** - Animations
+- **CSS Modules** - Styling
+- **TailwindCSS** - Utility classes
+
+## 📦 Dependencies
+
+These pages assume your project has:
+
+```json
+{
+  "firebase": "^10.11.0",
+  "firebase-admin": "^12.2.0",
+  "framer-motion": "^12.40.0",
+  "next": "^16.2.2",
+  "react": "^19.0.0"
 }
 ```
 
-## 🚀 Development
+## 🔌 Integration
 
-All pages are fully functional Next.js 14+ with:
-- React 19
-- TypeScript
-- Firebase integration
-- Framer Motion animations
-- CSS Modules
+### 1. Copy pages folder
+```bash
+cp -r pages ./your-project/
+```
 
-Last updated: 2026-07-22
+### 2. Update imports (if needed)
+Paths use `@/` alias - ensure your `tsconfig.json` has:
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+### 3. Configure Firebase
+Add your Firebase config to `src/lib/firebase.ts`
+
+### 4. Import pages
+Reference pages in your `src/app` routes
+
+## 📚 File Structure
+
+- `pages/landing/` - Landing page entry point + components
+- `pages/vetting/` - Vetting flow with multiple routes
+- `pages/README.md` - Detailed documentation
+
+## 🎯 Routes
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Landing page |
+| `/vetting` | Redirect to login |
+| `/vetting/login` | Driver login |
+| `/vetting/register` | Pre-registration |
+| `/vetting/dashboard` | Driver portal |
+
+## 📄 License
+
+MIT
+
+## 🔗 Links
+
+- **App Repo**: [dhl-vetting-v2](https://github.com/j-mazini/dhl-vetting-v2)
+- **Live**: https://j-mazini.github.io/dhl-vetting-v2/
+- **GitHub**: https://github.com/j-mazini/dhl-vetting-pages
+
+---
+
+**Created:** July 2026  
+**Last Updated:** July 22, 2026

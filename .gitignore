@@ -1,5 +1,19 @@
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
 .env
 .env.local
-*.log
-.DS_Store

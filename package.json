@@ -1,0 +1,21 @@
+{
+  "name": "dhl-vetting-pages",
+  "version": "1.0.0",
+  "description": "DHL Vetting Tracker - Landing and Vetting Pages",
+  "private": false,
+  "main": "pages/index.ts",
+  "keywords": [
+    "dhl",
+    "vetting",
+    "landing-page",
+    "driver-portal",
+    "next.js",
+    "react"
+  ],
+  "author": "j-mazini",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-mazini/dhl-vetting-pages.git"
+  }
+}
