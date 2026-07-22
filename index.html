@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHL Vetting Tracker - Pages Repository</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        .tech-stack {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 30px 0;
+        }
+
+        .tech-stack h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .file-structure {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .file-structure code {
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+
+        .feature-item strong {
+            color: #667eea;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 DHL Vetting Tracker</h1>
+            <p class="subtitle">Landing Page + Vetting Flow Pages</p>
+            <p style="margin-top: 15px; font-size: 0.95em; opacity: 0.95;">Components prontos para integração em seu Next.js</p>
+        </header>
+
+        <main>
+            <div class="status-badge">✅ Repositório Ativo</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h2>🎯 O que é?</h2>
+                    <p>Este repositório contém páginas e componentes completos e reutilizáveis para o DHL Vetting Tracker, construído com:</p>
+                    <ul>
+                        <li>Next.js 16.2+</li>
+                        <li>React 19</li>
+                        <li>TypeScript</li>
+                        <li>Firebase</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #999;">Pronto para copiar e integrar em qualquer projeto Next.js</p>
+                </div>
+
+                <div class="card">
+                    <h2>📁 Estrutura</h2>
+                    <ul>
+                        <li><strong>landing/</strong> - Página inicial com hero, serviços e contato</li>
+                        <li><strong>vetting/</strong> - Fluxo de vetting para motoristas</li>
+                        <li><strong>components/</strong> - Componentes React reutilizáveis</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #999;">Todos os componentes usam CSS Modules e Framer Motion</p>
+                </div>
+
+                <div class="card">
+                    <h2>🚀 Quick Start</h2>
+                    <p>Para usar este repositório em seu projeto:</p>
+                    <code style="display: block; background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0;">git clone https://github.com/j-mazini/dhl-vetting-pages.git</code>
+                    <p style="font-size: 0.9em; color: #999;">Copie a pasta pages para seu projeto Next.js</p>
+                </div>
+            </div>
+
+            <section class="tech-stack">
+                <h3>🔧 Tech Stack</h3>
+                <div class="tech-list">
+                    <div class="tech-item">Next.js 16.2+</div>
+                    <div class="tech-item">React 19</div>
+                    <div class="tech-item">TypeScript 5+</div>
+                    <div class="tech-item">Firebase Auth</div>
+                    <div class="tech-item">Firestore</div>
+                    <div class="tech-item">Framer Motion</div>
+                    <div class="tech-item">CSS Modules</div>
+                    <div class="tech-item">TailwindCSS</div>
+                </div>
+            </section>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">📄 Páginas Disponíveis</h2>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>🏠 Landing Page</strong>
+                    <p style="margin-top: 10px;">Página inicial com navegação, hero section com animações, abas de serviços, informações da frota e formulário de contato.</p>
+                </div>
+
+                <div class="feature-item">
+                    <strong>🔐 Vetting Flow</strong>
+                    <p style="margin-top: 10px;">Portal do motorista com autenticação Firebase, pré-registro, dashboard de progresso e gerenciamento de documentos.</p>
+                </div>
+
+                <div class="feature-item">
+                    <strong>✨ Componentes</strong>
+                    <p style="margin-top: 10px;">Header, Hero Section, Service Tabs, Fleet Spotlight, Contact Form, Forms de Registro e Histórico de Trabalho.</p>
+                </div>
+
+                <div class="feature-item">
+                    <strong>🎨 Design</strong>
+                    <p style="margin-top: 10px;">Responsivo, animações com Framer Motion, CSS Modules para isolamento de estilos, suporte a TailwindCSS.</p>
+                </div>
+            </div>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">📚 Arquivo Structure</h2>
+
+            <div class="file-structure"><code>pages/
+├── landing/
+│   ├── page.tsx
+│   ├── components/
+│   │   ├── LandingHeader.tsx
+│   │   ├── EnhancedHeroSection.tsx
+│   │   ├── ServiceTabs.tsx
+│   │   ├── FleetSpotlight.tsx
+│   │   └── ContactForm.tsx
+│   └── components/ (CSS Modules)
+│
+└── vetting/
+    ├── page.tsx
+    ├── layout.tsx
+    ├── login/
+    │   └── page.tsx
+    ├── register/
+    │   └── page.tsx
+    ├── dashboard/
+    │   └── page.tsx
+    └── components/
+        ├── PreRegistrationForm.tsx
+        └── WorkHistoryForm.tsx</code></div>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">🎯 Rotas Disponíveis</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #667eea;">Rota</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #667eea;">Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px;"><code>/</code></td>
+                        <td style="padding: 12px;">Landing page principal</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px;"><code>/vetting</code></td>
+                        <td style="padding: 12px;">Redirecionamento para login</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px;"><code>/vetting/login</code></td>
+                        <td style="padding: 12px;">Login do motorista</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px;"><code>/vetting/register</code></td>
+                        <td style="padding: 12px;">Pré-registro do motorista</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px;"><code>/vetting/dashboard</code></td>
+                        <td style="padding: 12px;">Portal do motorista com progresso</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">🔗 Links Úteis</h2>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="margin-bottom: 10px;">
+                    <strong>Este Repositório:</strong>
+                    <a href="https://github.com/j-mazini/dhl-vetting-pages" target="_blank" class="cta-button secondary-button" style="margin-left: 10px;">
+                        🔗 Abrir no GitHub
+                    </a>
+                </p>
+                <p style="margin-bottom: 10px;">
+                    <strong>Aplicação Principal:</strong>
+                    <a href="https://github.com/j-mazini/dhl-vetting-v2" target="_blank" class="cta-button secondary-button" style="margin-left: 10px;">
+                        📱 dhl-vetting-v2
+                    </a>
+                </p>
+                <p>
+                    <strong>Live Demo:</strong>
+                    <a href="https://j-mazini.github.io/dhl-vetting-v2/" target="_blank" class="cta-button secondary-button" style="margin-left: 10px;">
+                        🌐 Ver ao vivo
+                    </a>
+                </p>
+            </div>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">📦 Integração</h2>
+
+            <div style="background: #f0f7ff; border-left: 4px solid #667eea; padding: 20px; border-radius: 4px; margin: 20px 0;">
+                <h3 style="color: #333; margin-bottom: 15px;">Como usar em seu projeto:</h3>
+                <ol style="margin-left: 20px;">
+                    <li style="margin-bottom: 10px;">Clone este repositório</li>
+                    <li style="margin-bottom: 10px;">Copie a pasta <code>pages/</code> para seu projeto Next.js</li>
+                    <li style="margin-bottom: 10px;">Atualize os imports em seu <code>src/app/</code></li>
+                    <li style="margin-bottom: 10px;">Configure Firebase em <code>src/lib/firebase.ts</code></li>
+                    <li>Pronto! Use os componentes em suas rotas</li>
+                </ol>
+            </div>
+
+            <h2 style="margin: 40px 0 20px 0; color: #333;">✨ Recursos</h2>
+
+            <div class="feature-list" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="feature-item">
+                    <strong>Landing Page</strong>
+                    <ul style="margin-top: 10px; margin-left: 15px;">
+                        <li>📱 Responsivo</li>
+                        <li>🎬 Animações</li>
+                        <li>📊 Service tabs</li>
+                        <li>🚗 Fleet info</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item">
+                    <strong>Vetting Flow</strong>
+                    <ul style="margin-top: 10px; margin-left: 15px;">
+                        <li>🔐 Firebase Auth</li>
+                        <li>📝 Forms</li>
+                        <li>📊 Progress</li>
+                        <li>📄 Documents</li>
+                    </ul>
+                </div>
+
+                <div class="feature-item">
+                    <strong>Developer UX</strong>
+                    <ul style="margin-top: 10px; margin-left: 15px;">
+                        <li>✨ TypeScript</li>
+                        <li>📦 Modular</li>
+                        <li>🎨 CSS Modules</li>
+                        <li>🚀 Production ready</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="https://github.com/j-mazini/dhl-vetting-pages" target="_blank" class="cta-button">
+                    ⭐ Acesse o Repositório no GitHub
+                </a>
+                <a href="https://j-mazini.github.io/dhl-vetting-v2/" target="_blank" class="cta-button secondary-button">
+                    🌐 Ver Demo ao Vivo
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p><strong>DHL Vetting Tracker - Pages Repository</strong></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Criado em Julho de 2026 | Última atualização: 22 de julho de 2026</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Desenvolvido com ❤️ |
+                <a href="https://github.com/j-mazini" style="color: #667eea; text-decoration: none;">GitHub Profile</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
